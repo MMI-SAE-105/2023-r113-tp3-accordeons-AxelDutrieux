@@ -11,24 +11,27 @@
      /* pour que les éléments soient alignés horizontalement */
      display: flex;
      /* pour éviter les marges par défaut */
-     margin: 0;
+     margin: 0px;
      /* pour éviter les "padding" par défaut */
-     padding: 0;
+     padding: 0px;
 }
 
 #accordeon li {
      /* largeur de chaque élément replié 107px */
      width: 107px;
      /* pour cacher le contenu dépassant de l'élément */
+     overflow: hidden;
      /* pour l'animation, transition sur width */
     /* couleur de fond #eee */
     background-color: #eee;
      /* pour enlever les puces */ 
+     list-style-type: none;
      /* pour espacer les éléments, marge de 3px */
      margin: 3px;
      /* pour espacer le contenu, padding de 5px */
      padding: 5px;
      /* pour arrondir les bords de 5px */
+     border-radius: 5px;
 }
 
 #accordeon li.actif {
@@ -37,41 +40,50 @@
 
 #accordeon li figure {
      /* pour éviter les marges par défaut */
+     margin: 0px;
      /* pour que les éléments soient alignés horizontalement */
+     display: flex;
      /* largeur de l'élément intrérieur de 317px (= déplié) */
+     width: 317px;
 }
 
 #accordeon li figure figcaption {
      /* largeur du texte de 200px */
+     width: 200px;
      /* pour espacer le texte, padding de 10px */
+     padding: 10px;
      /* pour que les éléments soient alignés verticalement */
+     display: flex;
     
      /* espace entre les éléments */
+     margin: auto;
 }
 
 /* Sur tous les enfants de figcation */
 #accordeon li figure figcaption > * {
      /* pour éviter les marges par défaut */
+     margin-top: 0px;
      /* pour éviter les "padding" par défaut */
+     padding: 0px;
 }
     </style>
   </head>
   <body>
     <h1>Accordéon horizontal</h1>
-    <ul id="accordeon">
+    <ul id="accordeon" x-data="{open=0} ">
       <li>
         <figure>
-          <img src="https://picsum.photos/100?random=1" alt="" width="102">
+          <button @click="open=1"><img src="https://picsum.photos/100?random=1" alt="" width="102"></button>
           <figcaption>
-            <h3>Lorem, ipsum dolor.</h3>
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <h3 x-show="open===1">Lorem, ipsum dolor.</h3>
+            <p x-show="open===1">Lorem ipsum dolor sit amet consectetur.</p>
           </figcaption>
         </figure>
       </li>
-      <li class="class">
+      <li class="actif">
         <figure>
-          <img src="https://picsum.photos/100?random=2" alt="" width="102">
-          <figcaption>
+          <button @click="open=2"><img src="https://picsum.photos/100?random=2" alt="" width="102"></button>
+          <figcaption x-show="open===2">
             <h3>Quod, voluptatem <exercita></exercita>tionem?</h3>
             <p>Iste, dolorem. Facere molestiae vero optio.</p>
           </figcaption>
@@ -79,8 +91,8 @@
       </li>
       <li>
         <figure>
-          <img src="https://picsum.photos/100?random=3" alt="" width="102">
-          <figcaption>
+          <button @click="open=3"><img src="https://picsum.photos/100?random=3" alt="" width="102"></button>
+          <figcaption x-show="open===3">
             <h3>Nisi, ut dolores.</h3>
             <p>Reiciendis culpa corrupti quia repellendus excepturi!</p>
           </figcaption>
