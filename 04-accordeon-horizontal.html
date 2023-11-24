@@ -11,9 +11,9 @@
      /* pour que les éléments soient alignés horizontalement */
      display: flex;
      /* pour éviter les marges par défaut */
-     margin: 0px;
+     margin: 0;
      /* pour éviter les "padding" par défaut */
-     padding: 0px;
+     padding: 0;
 }
 
 #accordeon li {
@@ -22,6 +22,7 @@
      /* pour cacher le contenu dépassant de l'élément */
      overflow: hidden;
      /* pour l'animation, transition sur width */
+      transition: width 0.5s;
     /* couleur de fond #eee */
     background-color: #eee;
      /* pour enlever les puces */ 
@@ -35,7 +36,8 @@
 }
 
 #accordeon li.actif {
-     width: 317px;/* largeur de l'élément déplié 317px */
+     /* largeur de l'élément déplié 317px */
+     width: 317px;
 }
 
 #accordeon li figure {
@@ -43,7 +45,7 @@
      margin: 0px;
      /* pour que les éléments soient alignés horizontalement */
      display: flex;
-     /* largeur de l'élément intrérieur de 317px (= déplié) */
+     /* largeur de l'élément intérieur de 317px (= déplié) */
      width: 317px;
 }
 
@@ -62,39 +64,38 @@
 /* Sur tous les enfants de figcation */
 #accordeon li figure figcaption > * {
      /* pour éviter les marges par défaut */
-     margin-top: 0px;
+     margin-top: 0;
      /* pour éviter les "padding" par défaut */
-     padding: 0px;
+     padding: 0;
 }
     </style>
   </head>
   <body>
-    <h1>Accordéon horizontal</h1>
-    <ul id="accordeon" x-data="{open=0} ">
-      <li>
+    <ul id="accordeon" x-data="{open: 0}">
+      <li :class="{actif: open===1}" @click="open=1">
         <figure>
-          <button @click="open=1"><img src="https://picsum.photos/100?random=1" alt="" width="102"></button>
+          <img src="https://picsum.photos/100?random=1" alt="" width="102">
           <figcaption>
-            <h3 x-show="open===1">Lorem, ipsum dolor.</h3>
-            <p x-show="open===1">Lorem ipsum dolor sit amet consectetur.</p>
+            <h3>Lorem, ipsum dolor.</h3>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
           </figcaption>
         </figure>
       </li>
-      <li class="actif">
+      <li :class="{actif: open===2}" @click="open=2">
         <figure>
-          <button @click="open=2"><img src="https://picsum.photos/100?random=2" alt="" width="102"></button>
-          <figcaption x-show="open===2">
-            <h3>Quod, voluptatem <exercita></exercita>tionem?</h3>
-            <p>Iste, dolorem. Facere molestiae vero optio.</p>
+          <img src="https://picsum.photos/100?random=2" alt="" width="102">
+          <figcaption>
+            <h3>Nobis, praesentium architecto.</h3>
+            <p>Distinctio sapiente saepe officia tempora sequi.</p>
           </figcaption>
         </figure>
       </li>
-      <li>
+      <li :class="{actif: open===3}" @click="open=3">
         <figure>
-          <button @click="open=3"><img src="https://picsum.photos/100?random=3" alt="" width="102"></button>
-          <figcaption x-show="open===3">
-            <h3>Nisi, ut dolores.</h3>
-            <p>Reiciendis culpa corrupti quia repellendus excepturi!</p>
+          <img src="https://picsum.photos/100?random=3" alt="" width="102">
+          <figcaption>
+            <h3>Consequatur, quaerat excepturi.</h3>
+            <p>Maxime fuga est quibusdam ut sed.</p>
           </figcaption>
         </figure>
       </li>
