@@ -20,26 +20,33 @@
       border-radius: 5px;
       
     }
+    #panneaux div {
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    #panneaux div.actif {
+      opacity: 1;
+    }
   </style>
   <body>
     <h1>Onglets</h1>
-    <div id="onglets" x-data="{open : 1,}">
+    <div id="onglets" x-data="{open : 0,}">
       <ul role="tablist">
-        <li role="tab">Onglet 1</li>
-        <li role="tab">Onglet 2</li>
-        <li role="tab">Onglet 3</li>
+        <li role="tab" @click="open=1">Onglet 1</li>
+        <li role="tab" @click="open=2">Onglet 2</li>
+        <li role="tab" @click="open=3">Onglet 3</li>
       </ul>
       <div>
-        <div>
-          <div role="tabpanel" :class="{actif:ouvert === 1,}">
+        <div id="panneaux">
+          <div role="tabpanel" :class="{actif:open === 1,}">
             <h1>Panneau 1</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe illum sequi praesentium dolorum reprehenderit vitae eligendi ipsam aut distinctio libero deserunt, voluptatum nulla! Alias suscipit sunt incidunt dolores, asperiores quia?</p>
           </div>
-          <div role="tabpanel" :class="{actif:ouvert === 2,}">
+          <div role="tabpanel" :class="{actif:open === 2,}">
             <h1>Panneau 2</h1>
             <p>Voluptatibus a quis, voluptas earum distinctio voluptate. Sequi quas vel perspiciatis dolorem consequatur debitis earum? Suscipit impedit, rerum modi at quasi distinctio, doloremque recusandae, corrupti nostrum dolorem blanditiis odio debitis?</p>
           </div>
-          <div role="tabpanel" :class="{actif:ouvert === 3,}">
+          <div role="tabpanel" :class="{actif:open === 3,}">
             <h1>Panneau 3</h1>
             <p>Odio accusamus, id obcaecati iusto iure praesentium quam fuga dicta ab dolores dolorum veritatis repellat assumenda nulla ipsa maiores aperiam placeat officiis vitae? Sapiente nam odio libero ad, sunt voluptates!</p>
           </div>
